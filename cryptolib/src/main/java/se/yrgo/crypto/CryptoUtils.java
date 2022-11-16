@@ -250,7 +250,7 @@ public final class CryptoUtils {
     public static Map<String, PublicKey> readPublicKeys(Path directory) throws IOException {
         validateDirectory(directory);
 
-        try (Stream<Path> files = Files.walk(directory, 1)) {
+        try (Stream<Path> files = Files.walk(directory)) {
             return files.filter(p -> p.toString().endsWith(".pub")).filter(Files::isRegularFile)
                     .filter(Files::isReadable).collect(mapCollector());
         }
