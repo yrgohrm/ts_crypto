@@ -137,32 +137,6 @@ public final class CryptoUtils {
     }
 
     /**
-     * Encrypt a message, in UTF-8, with a signature. The string that will be encryptet will be in
-     * the form <signature>:<message> the signature will be a base64 encoded string.
-     * 
-     * @param message the message to encrypt
-     * @param receiverKey the public key of the receiver, used to encrypt
-     * @param senderKey the private key of the sender, used to sign
-     * @return a base64 encoded string consisting of the message and the signature
-     * 
-     * @throws IllegalBlockSizeException
-     * @throws BadPaddingException
-     * @throws InvalidKeyException
-     * @throws NoSuchAlgorithmException
-     * @throws NoSuchPaddingException
-     * @throws SignatureException
-     * @throws InvalidParameterSpecException
-     * @throws InvalidAlgorithmParameterException
-     */
-    public static String encryptAndSign(String message, PublicKey receiverKey, PrivateKey senderKey)
-            throws IllegalBlockSizeException, BadPaddingException, InvalidKeyException,
-            NoSuchAlgorithmException, NoSuchPaddingException, SignatureException,
-            InvalidParameterSpecException {
-        String encodedSignature = sign(message, senderKey);
-        return encrypt(encodedSignature + ":" + message, receiverKey);
-    }
-
-    /**
      * Encrypt the given message (in UTF-8) using a block crypto with a freshly generated key.
      * 
      * This generated key will be encrypted using the the public key.
@@ -208,6 +182,32 @@ public final class CryptoUtils {
         String base64Message = encryptMessage(message, encryptionCipher);
 
         return base64Key + ":" + base64Message;
+    }
+    
+    /**
+     * Encrypt a message, in UTF-8, with a signature. The string that will be encryptet will be in
+     * the form <signature>:<message> the signature will be a base64 encoded string.
+     * 
+     * @param message the message to encrypt
+     * @param receiverKey the public key of the receiver, used to encrypt
+     * @param senderKey the private key of the sender, used to sign
+     * @return a base64 encoded string consisting of the message and the signature
+     * 
+     * @throws IllegalBlockSizeException
+     * @throws BadPaddingException
+     * @throws InvalidKeyException
+     * @throws NoSuchAlgorithmException
+     * @throws NoSuchPaddingException
+     * @throws SignatureException
+     * @throws InvalidParameterSpecException
+     * @throws InvalidAlgorithmParameterException
+     */
+    public static String encryptAndSign(String message, PublicKey receiverKey, PrivateKey senderKey)
+            throws IllegalBlockSizeException, BadPaddingException, InvalidKeyException,
+            NoSuchAlgorithmException, NoSuchPaddingException, SignatureException,
+            InvalidParameterSpecException {
+        String encodedSignature = sign(message, senderKey);
+        return encrypt(encodedSignature + ":" + message, receiverKey);
     }
 
     /**
