@@ -1,0 +1,15 @@
+plugins {
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClass = 'se.yrgo.cryptoapp.Encrypt'
+}
+
+dependencies {
+    implementation project(':cryptolib')
+}

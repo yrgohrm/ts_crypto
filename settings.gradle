@@ -8,4 +8,4 @@
  */
 
 rootProject.name = 'ts_crypto'
-include('cryptolib')
+include 'cryptolib', 'cryptoapp'

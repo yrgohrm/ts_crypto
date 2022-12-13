@@ -1,6 +1,10 @@
 *.class
 *.jar
 
+# keys
+*.priv
+*.pub
+
 # Ignore Gradle project-specific cache directory
 .gradle
 
